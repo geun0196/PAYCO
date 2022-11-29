@@ -4,13 +4,13 @@ interface PayProcess{
 	public void payProcess();
 }
 
-abstract public class Payment { //°áÁ¦ Å¬·¡½º
+abstract public class Payment { //ê²°ì œ í´ë˜ìŠ¤
 	protected String shopName;
 	protected String productName;
 	protected long productPrice;
-	
+
 	public Payment() {
-		
+
 	}
 	public Payment(String shopName, String productName, long productPrice) {
 		super();
@@ -18,8 +18,8 @@ abstract public class Payment { //°áÁ¦ Å¬·¡½º
 		this.productName = productName;
 		this.productPrice = productPrice;
 	}
-	
-	public abstract void pay(); //Ãß»ó¸Ş¼­µå: ¼±¾ğºÎ¸¸ ÀÛ¼ºÇÏ°í ±¸ÇöºÎ´Â ÀÛ¼ºÇÏÁö ¾ÊÀ½
+
+	public abstract void pay(); //ì¶”ìƒë©”ì„œë“œ: ì„ ì–¸ë¶€ë§Œ ì‘ì„±í•˜ê³  êµ¬í˜„ë¶€ëŠ” ì‘ì„±í•˜ì§€ ì•ŠìŒ
 
 	public String getShopName() {
 		return shopName;
@@ -50,17 +50,17 @@ class CardPayment extends Payment implements PayProcess{
 	private String cardNumber;
 	private String cardPassword;
 	private int monthlyInstallment;
-	
-	@Override // ºÎ¸ğÅ¬·¡½ºÀÇ Ãß»ó¸Ş¼­µå ¿À¹ö¶óÀÌµåÇÏ¿© ±¸Çö
+
+	@Override // ë¶€ëª¨í´ë˜ìŠ¤ì˜ ì¶”ìƒë©”ì„œë“œ ì˜¤ë²„ë¼ì´ë“œí•˜ì—¬ êµ¬í˜„
 	public void pay(){
 		if(getMonthlyInstallment()<0 | productPrice<=0) {
-			System.out.println("°¡°İÀÌ³ª ÇÒºÎ°³¿ù¼ö°¡ Àß¸øµÇ¾ú½À´Ï´Ù.");
+			System.out.println("ê°€ê²©ì´ë‚˜ í• ë¶€ê°œì›”ìˆ˜ê°€ ì˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤.");
 		}else {
-		System.out.println("½Å¿ëÄ«µå°¡ Á¤»óÀûÀ¸·Î ÁöºÒµÇ¾ú½À´Ï´Ù.");
+			System.out.println("ì‹ ìš©ì¹´ë“œê°€ ì •ìƒì ìœ¼ë¡œ ì§€ë¶ˆë˜ì—ˆìŠµë‹ˆë‹¤.");
 		}
 	}
 	public CardPayment(){
-		
+
 	}
 	public CardPayment(String shopName, String productName, long productPrice,String cardNumber, String cardPassword, int monthlyInstallment) {
 		super(shopName,productName,productPrice);
@@ -71,12 +71,12 @@ class CardPayment extends Payment implements PayProcess{
 
 	@Override
 	public String toString() {
-		String msg = "[½Å¿ëÄ«µå °áÁ¦ Á¤º¸]";
-		msg += "\n»óÁ¡¸í : "+shopName;
-		msg += "\n»óÇ°¸í : "+productName;
-		msg += "\n»óÇ°°¡°İ : "+productPrice;
-		msg += "\n½Å¿ëÄ«µå¹øÈ£ : "+cardNumber;
-		msg += "\nÇÒºÎ°³¿ù : "+monthlyInstallment;
+		String msg = "[ì‹ ìš©ì¹´ë“œ ê²°ì œ ì •ë³´]";
+		msg += "\nìƒì ëª… : "+shopName;
+		msg += "\nìƒí’ˆëª… : "+productName;
+		msg += "\nìƒí’ˆê°€ê²© : "+productPrice;
+		msg += "\nì‹ ìš©ì¹´ë“œë²ˆí˜¸ : "+cardNumber;
+		msg += "\ní• ë¶€ê°œì›” : "+monthlyInstallment;
 		return msg;
 	}
 	public String getCardNumber() {
@@ -97,7 +97,7 @@ class CardPayment extends Payment implements PayProcess{
 	public void setMonthlyInstallment(int monthlyInstallment) {
 		this.monthlyInstallment = monthlyInstallment;
 	}
-	
+
 	@Override
 	public void payProcess() {
 		this.pay();
@@ -105,41 +105,41 @@ class CardPayment extends Payment implements PayProcess{
 	}
 }
 
-class CashPayment extends Payment implements PayProcess{
-	private String cashReceiptNumber;
+class PointPayment extends Payment implements PayProcess{
+	private String PointReceiptNumber;
 
 	@Override
 	public void pay(){
 		if(productPrice<=0) {
-			System.out.println("°¡°İÀÌ Àß¸øµÇ¾ú½À´Ï´Ù.");
+			System.out.println("ê°€ê²©ì´ ì˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤.");
 		}else {
-		System.out.println("Çö±İÀÌ Á¤»óÀûÀ¸·Î ÁöºÒµÇ¾ú½À´Ï´Ù.");
+			System.out.println("í˜„ê¸ˆì´ ì •ìƒì ìœ¼ë¡œ ì§€ë¶ˆë˜ì—ˆìŠµë‹ˆë‹¤.");
 		}
 	}
-	public CashPayment(){
-		
+	public PointPayment(){
+
 	}
-	public CashPayment(String shopName, String productName, long productPrice,String cashReceiptNumber) {
+	public PointPayment(String shopName, String productName, long productPrice,String PointReceiptNumber) {
 		super(shopName,productName,productPrice);
-		this.cashReceiptNumber = cashReceiptNumber;
+		this.PointReceiptNumber = PointReceiptNumber;
 	}
 
 	@Override
 	public String toString() {
-		String msg = "[Çö±İ °áÁ¦ Á¤º¸]";
-		msg += "\n»óÁ¡¸í : "+shopName;
-		msg += "\n»óÇ°¸í : "+productName;
-		msg += "\n»óÇ°°¡°İ : "+productPrice;
-		msg += "\nÇö±İ¿µ¼öÁõ¹øÈ£ : "+cashReceiptNumber;
+		String msg = "[í˜„ê¸ˆ ê²°ì œ ì •ë³´]";
+		msg += "\nìƒì ëª… : "+shopName;
+		msg += "\nìƒí’ˆëª… : "+productName;
+		msg += "\nìƒí’ˆê°€ê²© : "+productPrice;
+		msg += "\ní˜„ê¸ˆì˜ìˆ˜ì¦ë²ˆí˜¸ : "+PointReceiptNumber;
 		return msg;
 	}
-	public String getCashReceiptNumber() {
-		return cashReceiptNumber;
+	public String getPointReceiptNumber() {
+		return PointReceiptNumber;
 	}
-	public void setCashReceiptNumber(String cashReceiptNumber) {
-		this.cashReceiptNumber = cashReceiptNumber;
+	public void setPointReceiptNumber(String PointReceiptNumber) {
+		this.PointReceiptNumber = PointReceiptNumber;
 	}
-	
+
 	@Override
 	public void payProcess() {
 		this.pay();

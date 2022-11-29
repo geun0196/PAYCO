@@ -4,6 +4,8 @@ public class UserInfo {
 	
 	private String id;
 	private String password;
+	private int coupon;
+	private int point;
 	
 	public String getId() {
 		return id;
@@ -16,6 +18,18 @@ public class UserInfo {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public int getCoupon() {
+		return coupon;
+	}
+	public void setCoupon(int coupon) {
+		this.coupon = coupon;
+	}
+	public int getPoint() {
+		return point;
+	}
+	public void setPoint(int point) {
+		this.point = point;
 	}
 	
 	public UserInfo(String id, String password) {

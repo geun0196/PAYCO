@@ -9,19 +9,19 @@ interface Store{
 
 class Seoul implements Store {
 	public void location() {
-		System.out.println("¼­¿ï °¡¸ÍÁ¡");
+		System.out.println("ì„œìš¸ ê°€ë§¹ì ");
 	}
 }
 
 class Ulsan implements Store {
 	public void location() {
-		System.out.println("¿ï»ê °¡¸ÍÁ¡");
+		System.out.println("ìš¸ì‚° ê°€ë§¹ì ");
 	}
 }
 
 class Jinju implements Store {
 	public void location() {
-		System.out.println("ÁøÁÖ °¡¸ÍÁ¡");
+		System.out.println("ì§„ì£¼ ê°€ë§¹ì ");
 	}
 }
 
@@ -33,7 +33,7 @@ class WhereLocation{
 
 public class Franchisee {
 
-	static ArrayList<String> stores = new ArrayList<String>(Arrays.asList("A»óÁ¡", "B»óÁ¡", "C»óÁ¡", "D»óÁ¡"));
+	static ArrayList<String> stores = new ArrayList<String>(Arrays.asList("Aìƒì ", "Bìƒì ", "Cìƒì ", "Dìƒì "));
 
 	public static void showStoreList() {
 		for (int i = 0; i < stores.size(); ++i) {
