@@ -14,9 +14,9 @@ public class BeforLoginMainView {
 			menu = sc.nextInt();
 
 			if(menu == 1) {
-				Login.login();
-			} else if(menu == 2) {
-				SignUp.signup();
+				Login.login(); //Login클래스의 login메소드 호출
+			} else if(menu == 2) { 
+				SignUp.signup();  //Signup클래스의 signup메소드 호출
 			} else if(menu == 3) {
 				System.out.println("-------------조회 가능한 상점 리스트------------ ");
 				//리스트 보여주고

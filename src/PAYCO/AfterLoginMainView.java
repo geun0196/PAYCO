@@ -29,20 +29,23 @@ public class AfterLoginMainView {
 					CardPayment card = new CardPayment("PAYCO",p,money,"123-432-111","0070",0);
 					card.payProcess();
 					UserDataMap.setPoint(point);
+					System.out.println("10퍼센트 포인트 적립 되었습니다");
 				} else {
+					// 보유 포인트가 삼품 가격보다 많으면 결제 성공
 					if(UserDataMap.getHavePoint() >= money) {
 						PointPayment cash = new PointPayment("PAYCO",p,money,"123-1283-1523");
 						cash.payProcess();
-						UserDataMap.setPoint(point);
-					}else {
+						UserDataMap.setPoint(UserDataMap.getHavePoint()-money);
+						System.out.println("정상 결제 되었습니다.");
+					}
+					else { // 보유 포인트가 삼품 가격보다 적으면 결제 실패
 						System.out.println("보유하신 포인트가 부족합니다.");
 					}
-					
 				}
 
-			} else if(menu == 2) {
+			} else if(menu == 2) { // 송금
 				AccountTransfer.transfer();
-			} else if(menu == 3) {
+			} else if(menu == 3) { // 회원정보
 				UserDataMap.getAllData();
 			} else {
 				System.out.println("메뉴를 잘못 입력하셨습니다.");

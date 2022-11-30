@@ -1,5 +1,7 @@
 package PAYCO;
 
+//OCP를 위한 PayProcess 
+
 interface PayProcess{
 	public void payProcess();
 }
@@ -12,7 +14,8 @@ abstract public class Payment { //결제 클래스
 	public Payment() {
 
 	}
-	public Payment(String shopName, String productName, long productPrice) {
+	
+	public Payment(String shopName, String productName, long productPrice) {// 결제 생성자
 		super();
 		this.shopName = shopName;
 		this.productName = productName;
@@ -46,6 +49,7 @@ abstract public class Payment { //결제 클래스
 	}
 }
 
+// PayProcess를 지키고 Payment를 상속받는 카드결제를 위한 클래스 생성
 class CardPayment extends Payment implements PayProcess{
 	private String cardNumber;
 	private String cardPassword;
@@ -99,17 +103,18 @@ class CardPayment extends Payment implements PayProcess{
 	}
 
 	@Override
-	public void payProcess() {
+	public void payProcess() { //protocol 구현
 		this.pay();
 		System.out.println( this );
 	}
 }
 
+//PayProcess를 지키고 Payment를 상속받는 포인트제를 위한 클래스 생성
 class PointPayment extends Payment implements PayProcess{
 	private String PointReceiptNumber;
 
 	@Override
-	public void pay(){
+	public void pay(){ //부모클래스 추상메소드 재정의
 		if(productPrice<=0) {
 			System.out.println("가격이 잘못되었습니다.");
 		}else {
@@ -119,6 +124,7 @@ class PointPayment extends Payment implements PayProcess{
 	public PointPayment(){
 
 	}
+	// PointPayment 클래스의 생성자
 	public PointPayment(String shopName, String productName, long productPrice,String PointReceiptNumber) {
 		super(shopName,productName,productPrice);
 		this.PointReceiptNumber = PointReceiptNumber;
@@ -140,14 +146,14 @@ class PointPayment extends Payment implements PayProcess{
 		this.PointReceiptNumber = PointReceiptNumber;
 	}
 
-	@Override
-	public void payProcess() {
+	@Override 
+	public void payProcess() { //protocol 구현
 		this.pay();
 		System.out.println( this );
 	}
 }
 
-class PayProcessing{
+class PayProcessing{ // OCP를 위해 다른 클래스는 수정하지 않고 payProcessing을 수정한다.
 	public void payProcessing(PayProcess pp) {
 		pp.payProcess();
 	}
